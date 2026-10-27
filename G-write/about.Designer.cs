@@ -30,7 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(about));
             pictureBox1 = new PictureBox();
-            label1 = new Label();
+            label2 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -38,30 +39,44 @@
             // 
             pictureBox1.BackColor = SystemColors.Control;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 25);
+            pictureBox1.Location = new Point(13, 27);
+            pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(160, 152);
+            pictureBox1.Size = new Size(156, 148);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // label1
+            // label2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(178, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(175, 42);
-            label1.TabIndex = 2;
-            label1.Text = "Разработано: Ультранк\r\n\r\n";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(177, 27);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(437, 64);
+            label2.TabIndex = 3;
+            label2.Text = "Разработано: ООО «Ультранк»\r\nпо заказу ООО «СПЕЦКИБЕРПРИБОР»";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(185, 104);
+            button1.Name = "button1";
+            button1.Size = new Size(418, 65);
+            button1.TabIndex = 4;
+            button1.Text = "Понятно";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // about
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 225);
-            Controls.Add(label1);
+            ClientSize = new Size(624, 181);
+            Controls.Add(button1);
+            Controls.Add(label2);
             Controls.Add(pictureBox1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "about";
             Opacity = 0.85D;
             StartPosition = FormStartPosition.CenterScreen;
@@ -75,6 +90,7 @@
 
         #endregion
         private PictureBox pictureBox1;
-        private Label label1;
+        private Label label2;
+        private Button button1;
     }
 }

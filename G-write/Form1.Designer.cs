@@ -66,11 +66,22 @@ namespace G_write
             button2 = new Button();
             comboBox1 = new ComboBox();
             groupBox1 = new GroupBox();
+            txtTcpPort = new TextBox();
+            lblTcpPort = new Label();
+            txtTcpIp = new TextBox();
+            lblTcpIp = new Label();
+            lblConnStatus = new Label();
+            rbTcp = new RadioButton();
+            rbSerial = new RadioButton();
             box = new RichTextBox();
             customBox = new TextBox();
             button4 = new Button();
             button5 = new Button();
             Control = new GroupBox();
+            button13 = new Button();
+            groupBox8 = new GroupBox();
+            button15 = new Button();
+            label20 = new Label();
             label19 = new Label();
             button14 = new Button();
             label17 = new Label();
@@ -83,12 +94,10 @@ namespace G_write
             radioButton2 = new RadioButton();
             radioButton3 = new RadioButton();
             groupBox4 = new GroupBox();
-            button15 = new Button();
             buttonHomeZ = new Button();
             buttonUpZ = new Button();
             buttonDownZ = new Button();
             groupBox2 = new GroupBox();
-            button13 = new Button();
             buttonHomeXY = new Button();
             buttonRightXY = new Button();
             buttonDownXY = new Button();
@@ -107,6 +116,7 @@ namespace G_write
             Zigzag.SuspendLayout();
             groupBox1.SuspendLayout();
             Control.SuspendLayout();
+            groupBox8.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -344,18 +354,68 @@ namespace G_write
             // 
             // comboBox1
             // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             resources.ApplyResources(comboBox1, "comboBox1");
             comboBox1.FormattingEnabled = true;
             comboBox1.Name = "comboBox1";
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtTcpPort);
+            groupBox1.Controls.Add(lblTcpPort);
+            groupBox1.Controls.Add(txtTcpIp);
+            groupBox1.Controls.Add(lblTcpIp);
+            groupBox1.Controls.Add(lblConnStatus);
+            groupBox1.Controls.Add(rbTcp);
+            groupBox1.Controls.Add(rbSerial);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(button2);
             resources.ApplyResources(groupBox1, "groupBox1");
             groupBox1.Name = "groupBox1";
             groupBox1.TabStop = false;
+            // 
+            // txtTcpPort
+            // 
+            resources.ApplyResources(txtTcpPort, "txtTcpPort");
+            txtTcpPort.Name = "txtTcpPort";
+            // 
+            // lblTcpPort
+            // 
+            resources.ApplyResources(lblTcpPort, "lblTcpPort");
+            lblTcpPort.Name = "lblTcpPort";
+            // 
+            // txtTcpIp
+            // 
+            resources.ApplyResources(txtTcpIp, "txtTcpIp");
+            txtTcpIp.Name = "txtTcpIp";
+            // 
+            // lblTcpIp
+            // 
+            resources.ApplyResources(lblTcpIp, "lblTcpIp");
+            lblTcpIp.Name = "lblTcpIp";
+            // 
+            // lblConnStatus
+            // 
+            resources.ApplyResources(lblConnStatus, "lblConnStatus");
+            lblConnStatus.ForeColor = Color.DimGray;
+            lblConnStatus.Name = "lblConnStatus";
+            // 
+            // rbTcp
+            // 
+            resources.ApplyResources(rbTcp, "rbTcp");
+            rbTcp.Name = "rbTcp";
+            rbTcp.UseVisualStyleBackColor = true;
+            rbTcp.CheckedChanged += rbTcp_CheckedChanged;
+            // 
+            // rbSerial
+            // 
+            resources.ApplyResources(rbSerial, "rbSerial");
+            rbSerial.Checked = true;
+            rbSerial.Name = "rbSerial";
+            rbSerial.TabStop = true;
+            rbSerial.UseVisualStyleBackColor = true;
+            rbSerial.CheckedChanged += rbSerial_CheckedChanged;
             // 
             // box
             // 
@@ -388,6 +448,8 @@ namespace G_write
             // 
             // Control
             // 
+            Control.Controls.Add(button13);
+            Control.Controls.Add(groupBox8);
             Control.Controls.Add(label19);
             Control.Controls.Add(button14);
             Control.Controls.Add(label17);
@@ -404,6 +466,36 @@ namespace G_write
             resources.ApplyResources(Control, "Control");
             Control.Name = "Control";
             Control.TabStop = false;
+            // 
+            // button13
+            // 
+            resources.ApplyResources(button13, "button13");
+            button13.Name = "button13";
+            button13.TabStop = false;
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
+            // groupBox8
+            // 
+            groupBox8.Controls.Add(button15);
+            groupBox8.Controls.Add(label20);
+            resources.ApplyResources(groupBox8, "groupBox8");
+            groupBox8.Name = "groupBox8";
+            groupBox8.TabStop = false;
+            groupBox8.Enter += groupBox8_Enter;
+            // 
+            // button15
+            // 
+            button15.BackColor = SystemColors.ButtonFace;
+            resources.ApplyResources(button15, "button15");
+            button15.Name = "button15";
+            button15.UseVisualStyleBackColor = false;
+            button15.Click += button15_Click_1;
+            // 
+            // label20
+            // 
+            resources.ApplyResources(label20, "label20");
+            label20.Name = "label20";
             // 
             // label19
             // 
@@ -485,20 +577,13 @@ namespace G_write
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(button15);
             groupBox4.Controls.Add(buttonHomeZ);
             groupBox4.Controls.Add(buttonUpZ);
             groupBox4.Controls.Add(buttonDownZ);
             resources.ApplyResources(groupBox4, "groupBox4");
             groupBox4.Name = "groupBox4";
             groupBox4.TabStop = false;
-            // 
-            // button15
-            // 
-            resources.ApplyResources(button15, "button15");
-            button15.Name = "button15";
-            button15.TabStop = false;
-            button15.UseVisualStyleBackColor = true;
+            groupBox4.Enter += groupBox4_Enter;
             // 
             // buttonHomeZ
             // 
@@ -523,7 +608,6 @@ namespace G_write
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(button13);
             groupBox2.Controls.Add(buttonHomeXY);
             groupBox2.Controls.Add(buttonRightXY);
             groupBox2.Controls.Add(buttonDownXY);
@@ -532,14 +616,6 @@ namespace G_write
             resources.ApplyResources(groupBox2, "groupBox2");
             groupBox2.Name = "groupBox2";
             groupBox2.TabStop = false;
-            // 
-            // button13
-            // 
-            resources.ApplyResources(button13, "button13");
-            button13.Name = "button13";
-            button13.TabStop = false;
-            button13.UseVisualStyleBackColor = true;
-            button13.Click += button13_Click;
             // 
             // buttonHomeXY
             // 
@@ -661,7 +737,6 @@ namespace G_write
             Controls.Add(Control);
             Controls.Add(Zigzag);
             Controls.Add(groupBox1);
-            Cursor = Cursors.NoMove2D;
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
@@ -671,8 +746,11 @@ namespace G_write
             Zigzag.ResumeLayout(false);
             Zigzag.PerformLayout();
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             Control.ResumeLayout(false);
             Control.PerformLayout();
+            groupBox8.ResumeLayout(false);
+            groupBox8.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -705,6 +783,13 @@ namespace G_write
 		private Button button2;
 		private ComboBox comboBox1;
 		private GroupBox groupBox1;
+		private RadioButton rbSerial;
+		private RadioButton rbTcp;
+		private Label lblConnStatus;
+		private Label lblTcpIp;
+		private TextBox txtTcpIp;
+		private Label lblTcpPort;
+		private TextBox txtTcpPort;
 		private Button button3;
 		private RichTextBox box;
 		private TextBox customBox;
@@ -754,12 +839,14 @@ namespace G_write
         private Label label18;
         private Label label19;
         private Button ToggleNumpadButton;
-        private Button button15;
         private Button button13;
         private Button button16;
         private Button button17;
         private GroupBox groupBox7;
         private TrackBar trackBar1;
         private Label label9;
+        private GroupBox groupBox8;
+        private Label label20;
+        private Button button15;
     }
 }

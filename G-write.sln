@@ -1,11 +1,8 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASIS-3AX", "G-write\ASIS-3AX.csproj", "{6B25D69B-1977-41DC-96DF-C717D8926987}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{664839CA-E945-4B1E-BACD-3CF1FA8D8E90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +20,6 @@ Global
 		{6B25D69B-1977-41DC-96DF-C717D8926987}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B25D69B-1977-41DC-96DF-C717D8926987}.Release|x86.ActiveCfg = Release|x86
 		{6B25D69B-1977-41DC-96DF-C717D8926987}.Release|x86.Build.0 = Release|x86
-		{664839CA-E945-4B1E-BACD-3CF1FA8D8E90}.Debug|Any CPU.ActiveCfg = Debug
-		{664839CA-E945-4B1E-BACD-3CF1FA8D8E90}.Debug|x86.ActiveCfg = Debug
-		{664839CA-E945-4B1E-BACD-3CF1FA8D8E90}.Release|Any CPU.ActiveCfg = Release
-		{664839CA-E945-4B1E-BACD-3CF1FA8D8E90}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

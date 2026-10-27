@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Application runtime & temp files
+temp.txt
+connection_config.json
+*.bak
+
+# PlatformIO & ESP32 firmware
+.pio/
+.vscode/
