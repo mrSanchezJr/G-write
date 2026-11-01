@@ -239,9 +239,9 @@
                             <Separator Height="1" Background="#DDDDDD" Margin="0,4"/>
 
                             <!-- Кнопки управления выполнением программы сканирования -->
-                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" Margin="0,4">
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="0,4">
                                 <!-- Кнопка генерации зигзага (genButton) -->
-                                <Button Grid.Row="0" Grid.Column="0" x:Name="genButton" Classes="actBtn" Height="44" Width="140" Margin="2"
+                                <Button Grid.Row="0" Grid.Column="0" x:Name="genButton" Classes="actBtn" Height="44" Width="140" Margin="3"
                                         Background="#D5E8D4" Click="genButton_Click">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
                                         <Image Source="avares://G-write/Assets/btn_genButton.png" Width="20" Height="20"/>
@@ -250,7 +250,7 @@
                                 </Button>
 
                                 <!-- Кнопка быстрого возврата в точку начала (button12) -->
-                                <Button Grid.Row="0" Grid.Column="1" x:Name="button12" Classes="actBtn" Height="44" Width="140" Margin="2" Click="button12_Click">
+                                <Button Grid.Row="1" Grid.Column="0" x:Name="button12" Classes="actBtn" Height="44" Width="140" Margin="3" Click="button12_Click">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
                                         <Image Source="avares://G-write/Assets/btn_button12.png" Width="20" Height="20"/>
                                         <TextBlock Text="В начало" VerticalAlignment="Center"/>
@@ -258,7 +258,7 @@
                                 </Button>
 
                                 <!-- Кнопка запуска потоковой отправки G-кода (button3) -->
-                                <Button Grid.Row="1" Grid.Column="0" x:Name="button3" Classes="actBtn" Height="44" Width="140" Margin="2"
+                                <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Classes="actBtn" Height="46" Width="140" Margin="3"
                                         FontWeight="Bold" Background="#DAE8FC" Click="button3_Click">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
                                         <Image Source="avares://G-write/Assets/btn_button3.png" Width="22" Height="22"/>
@@ -267,7 +267,7 @@
                                 </Button>
 
                                 <!-- Кнопка Пауза / Возобновить (button11) -->
-                                <Button Grid.Row="1" Grid.Column="1" x:Name="button11" Classes="actBtn" Height="44" Width="140" Margin="2"
+                                <Button Grid.Row="3" Grid.Column="0" x:Name="button11" Classes="actBtn" Height="46" Width="140" Margin="3"
                                         Background="#FFF2CC" Click="button11_Click">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
                                         <Image x:Name="imgButton11" Source="avares://G-write/Assets/btn_button11.png" Width="22" Height="22"/>
@@ -276,7 +276,7 @@
                                 </Button>
 
                                 <!-- Кнопка Аварийного останова и сброса (button10) -->
-                                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="button10" Classes="actBtn"
+                                <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="button10" Classes="actBtn"
                                         Height="44" Width="369" Margin="2,4,2,2" Background="#F8CECC" Foreground="#B85450" Click="button10_Click_1">
                                     <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
                                         <TextBlock x:Name="txtIcon10" Text="🛑" FontSize="16" VerticalAlignment="Center"/>
