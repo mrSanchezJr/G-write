@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="G_write.NumpadWindow"
+        Title="Экранная клавиатура"
+        Width="240" Height="400"
+        CanResize="False"
+        Topmost="True"
+        ShowInTaskbar="False"
+        WindowStartupLocation="Manual"
+        Background="#F5F5F5">
+
+    <Grid Margin="10" RowDefinitions="Auto,*,*,*,*,*,*" ColumnDefinitions="*,*,*">
+        <!-- Target Field Indicator -->
+        <Border Grid.Row="0" Grid.ColumnSpan="3" Background="#E8F0FE" CornerRadius="4" Padding="6" Margin="0,0,0,8">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock x:Name="lblTargetField" Text="Поле: Точка A (X)" FontWeight="Bold" FontSize="13"
+                           Foreground="#1A73E8" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Row 1: 1, 2, 3 -->
+        <Button Grid.Row="1" Grid.Column="0" Content="1" Tag="1" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="2" Tag="2" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="3" Tag="3" Classes="numBtn" Click="Button_Click"/>
+
+        <!-- Row 2: 4, 5, 6 -->
+        <Button Grid.Row="2" Grid.Column="0" Content="4" Tag="4" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="5" Tag="5" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="6" Tag="6" Classes="numBtn" Click="Button_Click"/>
+
+        <!-- Row 3: 7, 8, 9 -->
+        <Button Grid.Row="3" Grid.Column="0" Content="7" Tag="7" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="8" Tag="8" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="9" Tag="9" Classes="numBtn" Click="Button_Click"/>
+
+        <!-- Row 4: 0, . -->
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Tag="0" Classes="numBtn" Click="Button_Click"/>
+        <Button Grid.Row="4" Grid.Column="2" Content="." Tag="." Classes="numBtn" Click="Button_Click"/>
+
+        <!-- Row 5: Backspace, Clear -->
+        <Button Grid.Row="5" Grid.Column="0" Content="←" Tag="←" Classes="actionBtn" Click="Button_Click"/>
+        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Content="Стереть" Tag="Стереть" Classes="actionBtn" Click="Button_Click"/>
+
+        <!-- Row 6: Enter (Ввод) -->
+        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Content="Ввод ⏎" Tag="Ввод" Classes="enterBtn" Click="Button_Click"/>
+    </Grid>
+
+    <Window.Styles>
+        <Style Selector="Button.numBtn">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style Selector="Button.actionBtn">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style Selector="Button.enterBtn">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#1A73E8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Margin" Value="2,4,2,2"/>
+        </Style>
+    </Window.Styles>
+</Window>

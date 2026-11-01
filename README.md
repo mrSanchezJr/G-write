@@ -83,23 +83,20 @@ dotnet publish G-write/ASIS-3AX.csproj -c Release
 ## 📂 Структура репозитория
 
 ```
-├── G-write/                    # Исходный код приложения на C# (.NET 8 WinForms)
+├── G-write-CrossPlatform/      # Кроссплатформенная версия на Avalonia UI (.NET 8, Windows & Linux)
+│   ├── MainWindow.axaml        # Главное окно с векторным масштабированием (Viewbox)
+│   ├── EditableComboBox.cs     # Выпадающие списки с ручным вводом и мгновенным откликом
+│   ├── AppVersion.cs           # Единый источник версий для всего проекта
+│   ├── build-all.bat           # Скрипт сборки автономных релизов (Single-File)
+│   └── G-write.csproj          # Проект Avalonia UI .NET 8
+├── G-write/                    # Исходный код классического приложения (.NET 8 WinForms)
 │   ├── Form1.cs                # Основная логика работы и обработки команд
 │   ├── Form1.Designer.cs       # Описание компонентов для WinForms Designer
-│   ├── Form1.resx              # Локализованные ресурсы и свойства элементов интерфейса
-│   ├── ICNCConnection.cs       # Интерфейс абстракции подключения (Serial / TCP)
-│   ├── SerialCNCConnection.cs  # Реализация подключения через USB COM-порт
-│   ├── TcpCNCConnection.cs     # Реализация подключения через Wi-Fi TCP
-│   ├── ConnectionConfig.cs     # Конфигурация и сериализация настроек подключения
-│   └── ASIS-3AX.csproj         # Файл проекта .NET 8
-├── firmware/
-│   └── esp32-bridge/           # Проект PlatformIO для ESP-32S
-│       ├── platformio.ini      # Конфигурация платы esp32dev
-│       ├── include/config.h    # Настройки Wi-Fi, пинов UART и буферов
-│       └── src/main.cpp        # Реализация прозрачного двунаправленного моста
+│   └── ASIS-3AX.csproj         # Файл проекта WinForms
+├── PROJECT_CONTEXT.md          # Полное описание архитектуры и контекста проекта
 ├── CHANGELOG.md                # Подробный лог изменений
 ├── LICENSE.txt                 # Лицензия проекта (GPL-3.0)
-└── G-write.sln                 # Файл решения Visual Studio
+└── G-write.sln                 # Файл решения Visual Studio (содержит оба проекта)
 ```
 
 ---
