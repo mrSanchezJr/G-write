@@ -583,12 +583,12 @@ namespace G_write
                     port.Open();
 
                     lblConnStatus.Text = $"TCP: {host}:{tcpPort}";
-                    lblConnStatus.Foreground = Brushes.DarkGreen;
+                    lblConnStatus.Foreground = Brushes.ForestGreen;
                 }
                 catch (Exception ex)
                 {
                     lblConnStatus.Text = "Ошибка связи";
-                    lblConnStatus.Foreground = Brushes.Red;
+                    lblConnStatus.Foreground = Brushes.Crimson;
                     AppendLog($"[Ошибка] Не удалось подключиться к ESP-32S по TCP: {ex.Message}");
                     return;
                 }
@@ -619,12 +619,12 @@ namespace G_write
                     port.Open();
 
                     lblConnStatus.Text = $"COM: {selectedPort}";
-                    lblConnStatus.Foreground = Brushes.DarkGreen;
+                    lblConnStatus.Foreground = Brushes.ForestGreen;
                 }
                 catch (Exception ex)
                 {
                     lblConnStatus.Text = "Ошибка порта";
-                    lblConnStatus.Foreground = Brushes.Red;
+                    lblConnStatus.Foreground = Brushes.Crimson;
                     AppendLog($"[Ошибка] Ошибка открытия порта: {ex.Message}");
                     return;
                 }
@@ -665,6 +665,10 @@ namespace G_write
             button1.Content = "Подключить";
             rbSerial.IsEnabled = true;
             rbTcp.IsEnabled = true;
+            isNotStop = true;
+            txtButton10.Text = "СТОП";
+            txtIcon10.Text = "🛑";
+            button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
             txtTcpIp.IsEnabled = true;
             txtTcpPort.IsEnabled = true;
             comboBox1.IsEnabled = true;
@@ -1106,6 +1110,7 @@ namespace G_write
                 isStreaming = false;
                 txtButton10.Text = "РАЗБЛОК.";
                 txtIcon10.Text = "🔓";
+                button10.Background = new SolidColorBrush(Color.Parse("#F57C00"));
                 timer1?.Stop();
 
                 // Байт 0x18 (Ctrl-X): команда GRBL Soft Reset (экстренный сброс)
@@ -1118,6 +1123,7 @@ namespace G_write
             {
                 txtButton10.Text = "СТОП";
                 txtIcon10.Text = "🛑";
+                button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
                 port.Write("$X\n"); // Команда разблокировки станка после аварийного останова
                 isCounterCommand = false;
                 timer1?.Start();

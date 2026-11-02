@@ -277,7 +277,7 @@
 
                                 <!-- Кнопка Аварийного останова и сброса (button10) -->
                                 <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="button10" Classes="actBtn"
-                                        Height="44" Width="369" Margin="2,4,2,2" Background="#F8CECC" Foreground="#B85450" Click="button10_Click_1">
+                                        Height="44" Width="369" Margin="2,4,2,2" Background="#D9534F" Foreground="White" Click="button10_Click_1">
                                     <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
                                         <TextBlock x:Name="txtIcon10" Text="🛑" FontSize="16" VerticalAlignment="Center"/>
                                         <TextBlock x:Name="txtButton10" Text="СТОП" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -314,6 +314,7 @@
                                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     <!-- Кнопка программного обнуления координат (button14) -->
                                     <Button Grid.Column="3" x:Name="button14" Classes="actBtn" Width="85" Height="36"
+                                            Background="#FFF0F0" Foreground="#C00000"
                                             ToolTip.Tip="Обнулить текущие координаты станка (G10 L20 P1 X0 Y0 Z0)" Click="button14_Click">
                                         <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
                                             <TextBlock Text="⟲" FontSize="16" VerticalAlignment="Center"/>
@@ -422,8 +423,9 @@
                                         <TextBlock Grid.Column="0" Text="Поиск начальной координаты&#x0a;по концевикам ($H)"
                                                    VerticalAlignment="Center" TextWrapping="Wrap"/>
                                         <!-- Кнопка аппаратного поиска нуля ($H / $X) (button15) -->
-                                        <Button Grid.Column="1" x:Name="button15" Content="Найти ноль"
-                                                Classes="actBtn" Width="150" Height="42" Click="button15_Click_1"/>
+                                        <Button Grid.Column="1" x:Name="button15" Content="Поиск нуля"
+                                                Classes="actBtn" Width="150" Height="42"
+                                                Background="#DAE8FC" Foreground="#0055AA" Click="button15_Click_1"/>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -449,27 +451,32 @@
                         </StackPanel>
 
                         <!-- Окно терминала (моноширинный вывод с авто-очисткой старых строк) -->
-                        <TextBox Grid.Row="1" x:Name="box"
-                                 IsReadOnly="True"
-                                 AcceptsReturn="True"
-                                 TextWrapping="Wrap"
-                                 FontFamily="Consolas,Menlo,Courier New"
-                                 FontSize="12"
-                                 Background="#1E1E1E"
-                                 Foreground="#00FF66"/>
+                        <Border Grid.Row="1" BorderBrush="#333333" BorderThickness="1" CornerRadius="4" Background="#1E1E1E" Margin="0,0,0,6">
+                            <TextBox x:Name="box"
+                                     IsReadOnly="True"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     FontFamily="Consolas, Menlo, Courier New, monospace"
+                                     FontSize="11.5"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     BorderThickness="0"
+                                     Background="#1E1E1E"
+                                     Foreground="#00FF66"
+                                     CaretBrush="#00FF66"/>
+                        </Border>
 
                         <!-- Кнопка очистки текста терминала (button5) -->
                         <Button Grid.Row="2" x:Name="button5" Content="Очистить терминал" Classes="actBtn"
-                                HorizontalAlignment="Right" Margin="0,6,0,6" Click="button5_Click"/>
+                                HorizontalAlignment="Stretch" Height="36" Margin="0,0,0,6" Click="button5_Click"/>
 
                         <!-- Панель прозрачности окна (trackBar1) -->
-                        <Border Grid.Row="3" BorderBrush="#D0D0D0" BorderThickness="1" CornerRadius="4" Padding="8" Background="#FAFAFA">
+                        <Border Grid.Row="3" BorderBrush="#D0D0D0" BorderThickness="1" CornerRadius="4" Padding="8,6" Background="#FAFAFA">
                             <Grid ColumnDefinitions="Auto,*,Auto">
-                                <TextBlock Grid.Column="0" Text="Прозрачность:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="11"/>
+                                <TextBlock Grid.Column="0" Text="Прозрачность:" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="11" Foreground="#555555"/>
                                 <Slider Grid.Column="1" x:Name="trackBar1" Minimum="20" Maximum="100" Value="100"
                                         ValueChanged="trackBar1_ValueChanged"/>
                                 <TextBlock Grid.Column="2" x:Name="lblOpacity" Text="100%" Width="45"
-                                           VerticalAlignment="Center" TextAlignment="Right" FontSize="11"/>
+                                           VerticalAlignment="Center" TextAlignment="Right" FontSize="11" FontWeight="SemiBold"/>
                             </Grid>
                         </Border>
                     </Grid>

@@ -2,15 +2,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="G_write.AboutWindow"
         Title="О программе"
-        Width="380" Height="260"
+        Width="540" Height="220"
         CanResize="False"
-        WindowStartupLocation="CenterOwner">
-    <StackPanel Margin="20" Spacing="12">
-        <TextBlock Text="G-write (ASIS-3AX)" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBlock x:Name="lblVersion" Text="Версия: 1.1.7 (Cross-Platform)" FontSize="14" HorizontalAlignment="Center" Foreground="#555555"/>
-        <TextBlock Text="Программа управления 3-осевым ЧПУ контроллером Inectra MSC-3US по COM-порту и беспроводной сети Wi-Fi (TCP)."
-                   TextWrapping="Wrap" TextAlignment="Center" Margin="0,5,0,5"/>
-        <TextBlock Text="Разработано для Windows и Linux." FontSize="12" HorizontalAlignment="Center" Foreground="#777777"/>
-        <Button Content="Закрыть" HorizontalAlignment="Center" Width="100" Margin="0,10,0,0" Click="CloseButton_Click"/>
-    </StackPanel>
+        WindowStartupLocation="CenterOwner"
+        Background="#FAFAFA">
+    <Grid Margin="20" ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
+        <!-- Логотип СПЕЦКИБЕРПРИБОР -->
+        <Image Grid.Row="0" Grid.Column="0" Source="avares://G-write/Assets/skp.png" Width="100" Height="100" Margin="0,0,20,0" VerticalAlignment="Center"/>
+
+        <!-- Текст описания -->
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Spacing="6">
+            <TextBlock Text="G-write (ASIS-3AX)" FontSize="18" FontWeight="Bold" Foreground="#1A237E"/>
+            <TextBlock x:Name="lblVersion" Text="Версия: 1.1.7 (Cross-Platform)" FontSize="13" Foreground="#616161"/>
+            <TextBlock Text="Программа управления 3-осевым ЧПУ контроллером Inectra MSC-3US по COM-порту и беспроводной сети Wi-Fi (TCP)."
+                       FontSize="13" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <!-- Кнопка закрытия -->
+        <Button Grid.Row="1" Grid.Column="1" Content="Понятно" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Height="40" Margin="0,15,0,0" Click="CloseButton_Click"/>
+    </Grid>
 </Window>
