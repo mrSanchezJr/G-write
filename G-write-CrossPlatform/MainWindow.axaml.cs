@@ -407,7 +407,6 @@ namespace G_write
             if (numpadForm.IsVisible)
             {
                 numpadForm.Hide();
-                txtNumpad.Text = "Экранная\nКлавиатура";
             }
             else
             {
@@ -415,7 +414,6 @@ namespace G_write
                 var screenBounds = this.Position;
                 numpadForm.Position = new PixelPoint(screenBounds.X + (int)this.Bounds.Width + 10, screenBounds.Y);
                 numpadForm.Show();
-                txtNumpad.Text = "Скрыть\nNumpad";
 
                 if (activeTextBox == null) activeTextBox = startPosX;
                 UpdateNumpadTargetDisplay();

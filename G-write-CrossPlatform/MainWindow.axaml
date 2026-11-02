@@ -286,9 +286,9 @@
                             </Grid>
 
                             <!-- Индикатор прогресса передачи кадров G-кода -->
-                            <StackPanel Spacing="4" Margin="0,4,0,0">
+                            <StackPanel Spacing="8" Margin="0,8,0,0">
                                 <TextBlock x:Name="label10" Text="Прогресс: Ожидание" HorizontalAlignment="Center" FontWeight="SemiBold"/>
-                                <ProgressBar x:Name="progressBar1" Height="22" Minimum="0" Maximum="100" Value="0"
+                                <ProgressBar x:Name="progressBar1" Height="42" Minimum="0" Maximum="100" Value="0"
                                              ShowProgressText="True"/>
                             </StackPanel>
                         </StackPanel>

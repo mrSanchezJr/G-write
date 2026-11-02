@@ -2,59 +2,65 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace G_write
+namespace G_write;
+
+public partial class NumpadWindow : Window
 {
-    public partial class NumpadWindow : Window
+    public event EventHandler<string>? NumberPressed;
+    public event EventHandler? BackspacePressed;
+    public event EventHandler? EnterPressed;
+    public event EventHandler? ClearPressed;
+
+    public bool AllowClose { get; set; } = false;
+
+    public NumpadWindow()
     {
-        public event EventHandler<string>? NumberPressed;
-        public event EventHandler? BackspacePressed;
-        public event EventHandler? EnterPressed;
-        public event EventHandler? ClearPressed;
+        InitializeComponent();
 
-        public bool AllowClose { get; set; } = false;
-
-        public NumpadWindow()
+        Closing += (sender, e) =>
         {
-            InitializeComponent();
-
-            Closing += (sender, e) =>
+            if (!AllowClose)
             {
-                if (!AllowClose)
-                {
-                    e.Cancel = true;
-                    Hide();
-                }
-            };
-        }
-
-        public void SetTargetName(string name)
-        {
-            if (lblTargetField != null)
-            {
-                lblTargetField.Text = $"Поле: {name}";
+                e.Cancel = true;
+                Hide();
             }
-        }
+        };
+    }
 
-        private void Button_Click(object? sender, RoutedEventArgs e)
+    public void SetTargetField(string? fieldName)
+    {
+        var indicator = this.FindControl<TextBlock>("TargetIndicatorText");
+        if (indicator != null)
         {
-            if (sender is Button button && button.Tag is string tag)
-            {
-                switch (tag)
-                {
-                    case "←":
-                        BackspacePressed?.Invoke(this, EventArgs.Empty);
-                        break;
-                    case "Ввод":
-                        EnterPressed?.Invoke(this, EventArgs.Empty);
-                        break;
-                    case "Стереть":
-                        ClearPressed?.Invoke(this, EventArgs.Empty);
-                        break;
-                    default:
-                        NumberPressed?.Invoke(this, tag);
-                        break;
-                }
-            }
+            indicator.Text = string.IsNullOrEmpty(fieldName) ? "Активное поле: нет" : $"Поле: {fieldName}";
         }
+    }
+
+    public void SetTargetName(string name)
+    {
+        SetTargetField(name);
+    }
+
+    private void Number_Click(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button btn && btn.Content != null)
+        {
+            NumberPressed?.Invoke(this, btn.Content.ToString() ?? "");
+        }
+    }
+
+    private void Backspace_Click(object? sender, RoutedEventArgs e)
+    {
+        BackspacePressed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Enter_Click(object? sender, RoutedEventArgs e)
+    {
+        EnterPressed?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Clear_Click(object? sender, RoutedEventArgs e)
+    {
+        ClearPressed?.Invoke(this, EventArgs.Empty);
     }
 }
