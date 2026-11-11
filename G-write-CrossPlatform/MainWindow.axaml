@@ -18,6 +18,7 @@
         Width="1440" Height="860"
         MinWidth="640" MinHeight="400"
         WindowStartupLocation="CenterScreen"
+        Topmost="True"
         Icon="avares://G-write/Assets/skp.ico"
         Background="#F0F0F0">
 

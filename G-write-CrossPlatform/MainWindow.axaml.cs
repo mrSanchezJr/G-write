@@ -413,7 +413,7 @@ namespace G_write
                 // Позиционируем окно клавиатуры справа от основного окна
                 var screenBounds = this.Position;
                 numpadForm.Position = new PixelPoint(screenBounds.X + (int)this.Bounds.Width + 10, screenBounds.Y);
-                numpadForm.Show();
+                numpadForm.Show(this);
 
                 if (activeTextBox == null) activeTextBox = startPosX;
                 UpdateNumpadTargetDisplay();
