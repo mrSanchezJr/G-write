@@ -13,7 +13,7 @@
         <!-- Текст описания -->
         <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Spacing="6">
             <TextBlock Text="G-write (ASIS-3AX)" FontSize="18" FontWeight="Bold" Foreground="#1A237E"/>
-            <TextBlock x:Name="lblVersion" Text="Версия: 1.1.7 (Cross-Platform)" FontSize="13" Foreground="#616161"/>
+            <TextBlock x:Name="lblVersion" Text="Версия: 2.0.1 (Cross-Platform)" FontSize="13" Foreground="#616161"/>
             <TextBlock Text="Программа управления 3-осевым ЧПУ контроллером Inectra MSC-3US по COM-порту и беспроводной сети Wi-Fi (TCP)."
                        FontSize="13" TextWrapping="Wrap"/>
         </StackPanel>
