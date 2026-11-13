@@ -632,6 +632,17 @@ namespace G_write
 
             try
             {
+                // Небольшая задержка для стабилизации COM-порта перед отправкой первой команды
+                if (rbTcp.IsChecked != true)
+                {
+                    System.Threading.Thread.Sleep(50);
+                }
+
+                // Отправка команды конфигурации режима связи контроллера MSC-3US:
+                // $452=0 при подключении по COM-порту, $452=1 при подключении по TCP
+                string initCmd = (rbTcp.IsChecked == true) ? "$452=1" : "$452=0";
+                port?.WriteLine(initCmd);
+
                 InitTimer();
                 button1.Content = "Отключить";
                 isConnected = true;
@@ -642,6 +653,7 @@ namespace G_write
                 comboBox1.IsEnabled = false;
                 button2.IsEnabled = false;
                 AppendLog("[Система] Соединение успешно установлено");
+                AppendLog($"[Конфигурация] Отправлена команда: {initCmd}");
             }
             catch (Exception ex)
             {
