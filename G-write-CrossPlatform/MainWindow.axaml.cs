@@ -98,6 +98,10 @@ namespace G_write
         // Экранная сенсорная клавиатура
         private NumpadWindow? numpadForm;
 
+        // Компактный режим (MiniWindow) при сворачивании
+        private MiniWindow? _miniWindow;
+        private bool _isSwitchingModes = false;
+
         // Ссылка на последнее активное текстовое поле (для ввода с Numpad)
         private TextBox? activeTextBox;
 
@@ -252,9 +256,85 @@ namespace G_write
                     numpadForm.AllowClose = true;
                     numpadForm.Close();
                 }
+                if (_miniWindow != null)
+                {
+                    _miniWindow.ForceClose();
+                }
             }
             catch { }
         }
+
+        // =========================================================================
+        // ПЕРЕХВАТ СВОРАЧИВАНИЯ И КОМПАКТНЫЙ РЕЖИМ (MiniWindow)
+        // =========================================================================
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+        {
+            base.OnPropertyChanged(change);
+            if (change.Property == WindowStateProperty)
+            {
+                var newState = change.GetNewValue<WindowState>();
+                if (newState == WindowState.Minimized && !_isSwitchingModes)
+                {
+                    Dispatcher.UIThread.Post(EnterMiniMode);
+                }
+            }
+        }
+
+        public void EnterMiniMode()
+        {
+            if (_isSwitchingModes) return;
+            _isSwitchingModes = true;
+            try
+            {
+                WindowState = WindowState.Normal;
+                Hide();
+                numpadForm?.Hide();
+
+                if (_miniWindow == null)
+                {
+                    _miniWindow = new MiniWindow(this);
+                }
+                _miniWindow.SyncWithMain();
+                _miniWindow.Show();
+                _miniWindow.Activate();
+            }
+            catch { }
+            finally
+            {
+                _isSwitchingModes = false;
+            }
+        }
+
+        public void RestoreFromMiniMode()
+        {
+            if (_isSwitchingModes) return;
+            _isSwitchingModes = true;
+            try
+            {
+                if (_miniWindow != null)
+                {
+                    _miniWindow.Hide();
+                }
+                Show();
+                WindowState = WindowState.Normal;
+                Activate();
+            }
+            catch { }
+            finally
+            {
+                _isSwitchingModes = false;
+            }
+        }
+
+        // Геттеры и триггеры действий для MiniWindow
+        public double GetProgressValue() => progressBar1?.Value ?? 0;
+        public double GetProgressMax() => progressBar1?.Maximum ?? 100;
+
+        public void TriggerGen() => genButton_Click(this, new RoutedEventArgs());
+        public void TriggerHome() => button12_Click(this, new RoutedEventArgs());
+        public void TriggerSend() => button3_Click(this, new RoutedEventArgs());
+        public void TriggerPause() => button11_Click(this, new RoutedEventArgs());
+        public void TriggerStop() => button10_Click_1(this, new RoutedEventArgs());
 
 
 
@@ -681,6 +761,8 @@ namespace G_write
             txtButton10.Text = "СТОП";
             txtIcon10.Text = "🛑";
             button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
+            _miniWindow?.UpdateStopState(false);
+            _miniWindow?.UpdatePauseState(false);
             txtTcpIp.IsEnabled = true;
             txtTcpPort.IsEnabled = true;
             comboBox1.IsEnabled = true;
@@ -1009,6 +1091,7 @@ namespace G_write
             sendDone = false;
             progressBar1.Minimum = 0;
             progressBar1.Maximum = dataToSend.Length;
+            _miniWindow?.UpdateProgress(0, dataToSend.Length);
 
             for (; i < dataToSend.Length; i++)
             {
@@ -1029,6 +1112,7 @@ namespace G_write
                 if (string.IsNullOrEmpty(line) || line.StartsWith(";"))
                 {
                     progressBar1.Value = Math.Min(i + 1, progressBar1.Maximum);
+                    _miniWindow?.UpdateProgress(progressBar1.Value, progressBar1.Maximum);
                     continue;
                 }
 
@@ -1049,6 +1133,7 @@ namespace G_write
 
                 progressBar1.Value = Math.Min(i + 1, progressBar1.Maximum);
                 label10.Text = "Отправка" + new string('.', (i % 4) + 1);
+                _miniWindow?.UpdateProgress(progressBar1.Value, progressBar1.Maximum);
             }
 
             if (i >= dataToSend.Length)
@@ -1056,6 +1141,7 @@ namespace G_write
                 label10.Text = "Завершено";
                 AppendLog("[Выполнение G-кода успешно завершено]");
                 sendDone = true;
+                _miniWindow?.UpdateProgress(progressBar1.Maximum, progressBar1.Maximum);
                 i = 0;
             }
 
@@ -1093,6 +1179,7 @@ namespace G_write
                 // Байт 0x82: команда GRBL Feed Hold (приостановка подачи)
                 byte[] data = new byte[] { 0x82 };
                 port.Write(data, 0, data.Length);
+                _miniWindow?.UpdatePauseState(true);
                 AppendLog("[Пауза]");
             }
             else
@@ -1108,6 +1195,7 @@ namespace G_write
                 }
                 catch { }
 
+                _miniWindow?.UpdatePauseState(false);
                 AppendLog("[Возобновление]");
             }
         }
@@ -1129,6 +1217,7 @@ namespace G_write
                 byte[] data = new byte[] { 0x18 };
                 port.Write(data, 0, data.Length);
                 isCounterCommand = false;
+                _miniWindow?.UpdateStopState(true);
                 AppendLog("[АВАРИЙНЫЙ СТОП]");
             }
             else
@@ -1140,6 +1229,7 @@ namespace G_write
                 isCounterCommand = false;
                 timer1?.Start();
                 isNotStop = true;
+                _miniWindow?.UpdateStopState(false);
                 AppendLog("[Контроллер разблокирован]");
             }
         }
