@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="G_write.MiniWindow"
         Title="ASIS-3AX (Мини)"
-        Width="320" Height="410"
+        Width="320" Height="400"
         CanResize="False"
         Topmost="True"
         ShowInTaskbar="True"
@@ -12,19 +12,17 @@
         FontSize="13">
 
     <Grid Margin="12" RowDefinitions="Auto,*,Auto">
-        <!-- Шапка: Название программы + Кнопка Развернуть -->
-        <Border Grid.Row="0" Background="#E8F0FE" BorderBrush="#BED5F6" BorderThickness="1" CornerRadius="6" Padding="10,6" Margin="0,0,0,10">
-            <Grid ColumnDefinitions="*,Auto">
-                <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                    <TextBlock Text="ASIS-3AX" FontWeight="Bold" FontSize="14" Foreground="#1A237E"/>
-                    <TextBlock Text="Компактный пульт" FontSize="11" Foreground="#555555"/>
-                </StackPanel>
-                <Button Grid.Column="1" x:Name="btnExpand" Content="⤢ Развернуть" Click="Expand_Click"
-                        Background="#1A73E8" Foreground="White" FontWeight="SemiBold" FontSize="12"
-                        Padding="10,6" CornerRadius="4" Cursor="Hand"
-                        ToolTip.Tip="Вернуться в полноразмерное окно программы"/>
-            </Grid>
-        </Border>
+        <!-- Шапка: Кнопка Развернуть -->
+        <Button Grid.Row="0" x:Name="btnExpand" Click="Expand_Click" Margin="0,0,0,10"
+                HorizontalAlignment="Stretch" Height="38"
+                Background="#1A73E8" Foreground="White" FontWeight="SemiBold" FontSize="13"
+                Padding="10,4" CornerRadius="6" Cursor="Hand"
+                ToolTip.Tip="Вернуться в полноразмерное окно программы">
+            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+                <Image Source="avares://G-write/Assets/icon_expand.png" Width="20" Height="20" VerticalAlignment="Center"/>
+                <TextBlock Text="Развернуть" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
 
         <!-- Основные кнопки действий ЧПУ -->
         <Grid Grid.Row="1" RowDefinitions="*,*,*,*,*" Margin="0,0,0,10">
@@ -34,7 +32,7 @@
                     Background="#D5E8D4" Foreground="#1E4620" FontWeight="SemiBold" FontSize="13"
                     Click="Gen_Click" ToolTip.Tip="Генерация траектории сканирования">
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                    <TextBlock Text="⚡" FontSize="15" VerticalAlignment="Center"/>
+                    <Image Source="avares://G-write/Assets/icon_gen.png" Width="22" Height="22" VerticalAlignment="Center"/>
                     <TextBlock Text="Генерировать" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
@@ -45,7 +43,7 @@
                     Background="#F0F0F0" Foreground="#222222" FontWeight="SemiBold" FontSize="13"
                     Click="Home_Click" ToolTip.Tip="Переход в координаты начала сканирования">
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                    <TextBlock Text="⏮" FontSize="14" VerticalAlignment="Center"/>
+                    <Image Source="avares://G-write/Assets/icon_home.png" Width="22" Height="22" VerticalAlignment="Center"/>
                     <TextBlock Text="В начало" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
@@ -56,7 +54,7 @@
                     Background="#DAE8FC" Foreground="#0D47A1" FontWeight="Bold" FontSize="13.5"
                     Click="Send_Click" ToolTip.Tip="Запуск выполнения G-кода сканирования">
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                    <TextBlock Text="▶" FontSize="14" Foreground="#0D47A1" VerticalAlignment="Center"/>
+                    <Image Source="avares://G-write/Assets/icon_send.png" Width="22" Height="22" VerticalAlignment="Center"/>
                     <TextBlock Text="Отправить" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
@@ -67,7 +65,7 @@
                     Background="#FFF2CC" Foreground="#7F6000" FontWeight="SemiBold" FontSize="13"
                     Click="Pause_Click" ToolTip.Tip="Приостановить или возобновить выполнение">
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                    <TextBlock x:Name="txtIconPause" Text="⏸" FontSize="14" VerticalAlignment="Center"/>
+                    <Image x:Name="imgBtnPause" Source="avares://G-write/Assets/icon_pause.png" Width="22" Height="22" VerticalAlignment="Center"/>
                     <TextBlock x:Name="txtBtnPause" Text="Пауза" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
@@ -78,7 +76,7 @@
                     Background="#D9534F" Foreground="White" FontWeight="Bold" FontSize="14"
                     Click="Stop_Click" ToolTip.Tip="Экстренный останов / разблокировка контроллера">
                 <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                    <TextBlock x:Name="txtIconStop" Text="🛑" FontSize="15" VerticalAlignment="Center"/>
+                    <Image x:Name="imgBtnStop" Source="avares://G-write/Assets/icon_stop.png" Width="22" Height="22" VerticalAlignment="Center"/>
                     <TextBlock x:Name="txtBtnStop" Text="СТОП" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>

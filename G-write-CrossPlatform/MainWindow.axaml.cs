@@ -102,6 +102,12 @@ namespace G_write
         private MiniWindow? _miniWindow;
         private bool _isSwitchingModes = false;
 
+        // Кэш иконок для кнопок управления
+        private static Bitmap? _iconPause;
+        private static Bitmap? _iconPlay;
+        private static Bitmap? _iconStop;
+        private static Bitmap? _iconUnlock;
+
         // Ссылка на последнее активное текстовое поле (для ввода с Numpad)
         private TextBox? activeTextBox;
 
@@ -758,9 +764,16 @@ namespace G_write
             rbSerial.IsEnabled = true;
             rbTcp.IsEnabled = true;
             isNotStop = true;
-            txtButton10.Text = "СТОП";
-            txtIcon10.Text = "🛑";
-            button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
+            isNotPaused = true;
+            UpdatePauseButton(false);
+            if (txtButton10 != null) txtButton10.Text = "СТОП";
+            try
+            {
+                _iconStop ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_stop.png")));
+                if (imgButton10 != null) imgButton10.Source = _iconStop;
+            }
+            catch { }
+            if (button10 != null) button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
             _miniWindow?.UpdateStopState(false);
             _miniWindow?.UpdatePauseState(false);
             txtTcpIp.IsEnabled = true;
@@ -1161,6 +1174,34 @@ namespace G_write
         //                   при попытке возобновления работы.
         // СТАЛО: Корректный вызов timer1.Stop() и timer1.Start().
         // =========================================================================
+        private void UpdatePauseButton(bool paused)
+        {
+            Dispatcher.UIThread.Post(() =>
+            {
+                if (paused)
+                {
+                    if (txtButton11 != null) txtButton11.Text = "Продолжить";
+                    try
+                    {
+                        _iconPlay ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_play.png")));
+                        if (imgButton11 != null) imgButton11.Source = _iconPlay;
+                    }
+                    catch { }
+                }
+                else
+                {
+                    if (txtButton11 != null) txtButton11.Text = "Пауза";
+                    try
+                    {
+                        _iconPause ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_pause.png")));
+                        if (imgButton11 != null) imgButton11.Source = _iconPause;
+                    }
+                    catch { }
+                }
+                _miniWindow?.UpdatePauseState(paused);
+            });
+        }
+
         private void button11_Click(object? sender, RoutedEventArgs e)
         {
             if (port == null || !port.IsOpen) return;
@@ -1169,17 +1210,11 @@ namespace G_write
             {
                 isNotPaused = false;
                 timer1?.Stop();
-                txtButton11.Text = "Продолжить";
-                try
-                {
-                    imgButton11.Source = new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icons8-play-26.png")));
-                }
-                catch { }
+                UpdatePauseButton(true);
 
                 // Байт 0x82: команда GRBL Feed Hold (приостановка подачи)
                 byte[] data = new byte[] { 0x82 };
                 port.Write(data, 0, data.Length);
-                _miniWindow?.UpdatePauseState(true);
                 AppendLog("[Пауза]");
             }
             else
@@ -1188,14 +1223,8 @@ namespace G_write
                 port.Write("~"); // Символ '~': команда GRBL Cycle Start (возобновление движения)
                 isCounterCommand = false;
                 timer1?.Start();
-                txtButton11.Text = "Пауза";
-                try
-                {
-                    imgButton11.Source = new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/btn_button11.png")));
-                }
-                catch { }
+                UpdatePauseButton(false);
 
-                _miniWindow?.UpdatePauseState(false);
                 AppendLog("[Возобновление]");
             }
         }
@@ -1208,23 +1237,37 @@ namespace G_write
             {
                 isNotStop = false;
                 isStreaming = false;
-                txtButton10.Text = "РАЗБЛОК.";
-                txtIcon10.Text = "🔓";
-                button10.Background = new SolidColorBrush(Color.Parse("#F57C00"));
+                isNotPaused = true;
+                UpdatePauseButton(false);
+
+                if (txtButton10 != null) txtButton10.Text = "РАЗБЛОК.";
+                try
+                {
+                    _iconUnlock ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_unlock.png")));
+                    if (imgButton10 != null) imgButton10.Source = _iconUnlock;
+                }
+                catch { }
+                if (button10 != null) button10.Background = new SolidColorBrush(Color.Parse("#F57C00"));
+                _miniWindow?.UpdateStopState(true);
+
                 timer1?.Stop();
 
                 // Байт 0x18 (Ctrl-X): команда GRBL Soft Reset (экстренный сброс)
                 byte[] data = new byte[] { 0x18 };
                 port.Write(data, 0, data.Length);
                 isCounterCommand = false;
-                _miniWindow?.UpdateStopState(true);
                 AppendLog("[АВАРИЙНЫЙ СТОП]");
             }
             else
             {
-                txtButton10.Text = "СТОП";
-                txtIcon10.Text = "🛑";
-                button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
+                if (txtButton10 != null) txtButton10.Text = "СТОП";
+                try
+                {
+                    _iconStop ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_stop.png")));
+                    if (imgButton10 != null) imgButton10.Source = _iconStop;
+                }
+                catch { }
+                if (button10 != null) button10.Background = new SolidColorBrush(Color.Parse("#D9534F"));
                 port.Write("$X\n"); // Команда разблокировки станка после аварийного останова
                 isCounterCommand = false;
                 timer1?.Start();

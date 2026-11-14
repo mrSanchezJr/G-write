@@ -276,44 +276,49 @@
                             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="0,4">
                                 <!-- Кнопка генерации зигзага (genButton) -->
                                 <Button Grid.Row="0" Grid.Column="0" x:Name="genButton" Classes="actBtn" Height="44" Width="140" Margin="3"
-                                        Background="#D5E8D4" Click="genButton_Click">
+                                        Background="#D5E8D4" Click="genButton_Click"
+                                        ToolTip.Tip="Генерация траектории сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/btn_genButton.png" Width="20" Height="20"/>
+                                        <Image Source="avares://G-write/Assets/icon_gen.png" Width="22" Height="22"/>
                                         <TextBlock Text="Генерировать" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка быстрого возврата в точку начала (button12) -->
-                                <Button Grid.Row="1" Grid.Column="0" x:Name="button12" Classes="actBtn" Height="44" Width="140" Margin="3" Click="button12_Click">
+                                <Button Grid.Row="1" Grid.Column="0" x:Name="button12" Classes="actBtn" Height="44" Width="140" Margin="3" Click="button12_Click"
+                                        ToolTip.Tip="Переход в координаты начала сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/btn_button12.png" Width="20" Height="20"/>
+                                        <Image Source="avares://G-write/Assets/icon_home.png" Width="22" Height="22"/>
                                         <TextBlock Text="В начало" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка запуска потоковой отправки G-кода (button3) -->
                                 <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Classes="actBtn" Height="46" Width="140" Margin="3"
-                                        FontWeight="Bold" Background="#DAE8FC" Click="button3_Click">
+                                        FontWeight="Bold" Background="#DAE8FC" Click="button3_Click"
+                                        ToolTip.Tip="Запуск выполнения G-кода сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/btn_button3.png" Width="22" Height="22"/>
+                                        <Image Source="avares://G-write/Assets/icon_send.png" Width="22" Height="22"/>
                                         <TextBlock Text="Отправить" VerticalAlignment="Center" FontWeight="Bold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка Пауза / Возобновить (button11) -->
                                 <Button Grid.Row="3" Grid.Column="0" x:Name="button11" Classes="actBtn" Height="46" Width="140" Margin="3"
-                                        Background="#FFF2CC" Click="button11_Click">
+                                        Background="#FFF2CC" Click="button11_Click"
+                                        ToolTip.Tip="Приостановить или возобновить выполнение">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image x:Name="imgButton11" Source="avares://G-write/Assets/btn_button11.png" Width="22" Height="22"/>
+                                        <Image x:Name="imgButton11" Source="avares://G-write/Assets/icon_pause.png" Width="22" Height="22"/>
                                         <TextBlock x:Name="txtButton11" Text="Пауза" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка Аварийного останова и сброса (button10) -->
                                 <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="button10" Classes="actBtn"
-                                        Height="44" Width="369" Margin="2,4,2,2" Background="#D9534F" Foreground="White" Click="button10_Click_1">
+                                        Height="44" Width="369" Margin="2,4,2,2" Background="#D9534F" Foreground="White" Click="button10_Click_1"
+                                        ToolTip.Tip="Экстренный останов / разблокировка контроллера">
                                     <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                                        <TextBlock x:Name="txtIcon10" Text="🛑" FontSize="16" VerticalAlignment="Center"/>
+                                        <Image x:Name="imgButton10" Source="avares://G-write/Assets/icon_stop.png" Width="24" Height="24" VerticalAlignment="Center"/>
                                         <TextBlock x:Name="txtButton10" Text="СТОП" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>

@@ -2,6 +2,8 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.Threading;
 
 namespace G_write;
@@ -10,6 +12,11 @@ public partial class MiniWindow : Window
 {
     private readonly MainWindow? _main;
     private bool _isRestoring = false;
+
+    private static Bitmap? _iconPause;
+    private static Bitmap? _iconPlay;
+    private static Bitmap? _iconStop;
+    private static Bitmap? _iconUnlock;
 
     public MiniWindow()
     {
@@ -53,21 +60,27 @@ public partial class MiniWindow : Window
     {
         Dispatcher.UIThread.Post(() =>
         {
-            if (txtBtnPause == null || txtIconPause == null || btnPause == null) return;
-            if (isPaused)
+            if (txtBtnPause == null || btnPause == null) return;
+            try
             {
-                txtBtnPause.Text = "Продолжить";
-                txtIconPause.Text = "▶";
-                btnPause.Background = new SolidColorBrush(Color.Parse("#E8F5E9"));
-                btnPause.Foreground = new SolidColorBrush(Color.Parse("#2E7D32"));
+                if (isPaused)
+                {
+                    txtBtnPause.Text = "Продолжить";
+                    _iconPlay ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_play.png")));
+                    if (imgBtnPause != null) imgBtnPause.Source = _iconPlay;
+                    btnPause.Background = new SolidColorBrush(Color.Parse("#E8F5E9"));
+                    btnPause.Foreground = new SolidColorBrush(Color.Parse("#2E7D32"));
+                }
+                else
+                {
+                    txtBtnPause.Text = "Пауза";
+                    _iconPause ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_pause.png")));
+                    if (imgBtnPause != null) imgBtnPause.Source = _iconPause;
+                    btnPause.Background = new SolidColorBrush(Color.Parse("#FFF2CC"));
+                    btnPause.Foreground = new SolidColorBrush(Color.Parse("#7F6000"));
+                }
             }
-            else
-            {
-                txtBtnPause.Text = "Пауза";
-                txtIconPause.Text = "⏸";
-                btnPause.Background = new SolidColorBrush(Color.Parse("#FFF2CC"));
-                btnPause.Foreground = new SolidColorBrush(Color.Parse("#7F6000"));
-            }
+            catch { }
         });
     }
 
@@ -75,19 +88,25 @@ public partial class MiniWindow : Window
     {
         Dispatcher.UIThread.Post(() =>
         {
-            if (txtBtnStop == null || txtIconStop == null || btnStop == null) return;
-            if (isStopped)
+            if (txtBtnStop == null || btnStop == null) return;
+            try
             {
-                txtBtnStop.Text = "РАЗБЛОК.";
-                txtIconStop.Text = "🔓";
-                btnStop.Background = new SolidColorBrush(Color.Parse("#F57C00"));
+                if (isStopped)
+                {
+                    txtBtnStop.Text = "РАЗБЛОК.";
+                    _iconUnlock ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_unlock.png")));
+                    if (imgBtnStop != null) imgBtnStop.Source = _iconUnlock;
+                    btnStop.Background = new SolidColorBrush(Color.Parse("#F57C00"));
+                }
+                else
+                {
+                    txtBtnStop.Text = "СТОП";
+                    _iconStop ??= new Bitmap(AssetLoader.Open(new Uri("avares://G-write/Assets/icon_stop.png")));
+                    if (imgBtnStop != null) imgBtnStop.Source = _iconStop;
+                    btnStop.Background = new SolidColorBrush(Color.Parse("#D9534F"));
+                }
             }
-            else
-            {
-                txtBtnStop.Text = "СТОП";
-                txtIconStop.Text = "🛑";
-                btnStop.Background = new SolidColorBrush(Color.Parse("#D9534F"));
-            }
+            catch { }
         });
     }
 
