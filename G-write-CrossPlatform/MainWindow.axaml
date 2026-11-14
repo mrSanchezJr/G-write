@@ -178,7 +178,7 @@
                     <Button x:Name="ToggleNumpadButton" Classes="actBtn" Height="44" Padding="8,2" Click="ToggleNumpadButton_Click"
                             ToolTip.Tip="Показать/скрыть плавающую сенсорную клавиатуру для ввода чисел">
                         <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
-                            <Image Source="avares://G-write/Assets/icons_keyboard.png" Width="26" Height="26"/>
+                            <Image Source="avares://G-write/Assets/icons_keyboard.png" Width="30" Height="30"/>
                             <TextBlock x:Name="txtNumpad" Text="Экранная&#x0a;Клавиатура" VerticalAlignment="Center" FontSize="12"/>
                         </StackPanel>
                     </Button>
@@ -275,50 +275,50 @@
                             <!-- Кнопки управления выполнением программы сканирования -->
                             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="0,4">
                                 <!-- Кнопка генерации зигзага (genButton) -->
-                                <Button Grid.Row="0" Grid.Column="0" x:Name="genButton" Classes="actBtn" Height="44" Width="140" Margin="3"
+                                <Button Grid.Row="0" Grid.Column="0" x:Name="genButton" Classes="actBtn" Height="46" Width="148" Margin="3"
                                         Background="#D5E8D4" Click="genButton_Click"
                                         ToolTip.Tip="Генерация траектории сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/icon_gen.png" Width="22" Height="22"/>
+                                        <Image Source="avares://G-write/Assets/icon_gen.png" Width="30" Height="30"/>
                                         <TextBlock Text="Генерировать" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка быстрого возврата в точку начала (button12) -->
-                                <Button Grid.Row="1" Grid.Column="0" x:Name="button12" Classes="actBtn" Height="44" Width="140" Margin="3" Click="button12_Click"
+                                <Button Grid.Row="1" Grid.Column="0" x:Name="button12" Classes="actBtn" Height="46" Width="148" Margin="3" Click="button12_Click"
                                         ToolTip.Tip="Переход в координаты начала сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/icon_home.png" Width="22" Height="22"/>
+                                        <Image Source="avares://G-write/Assets/icon_home.png" Width="30" Height="30"/>
                                         <TextBlock Text="В начало" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка запуска потоковой отправки G-кода (button3) -->
-                                <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Classes="actBtn" Height="46" Width="140" Margin="3"
+                                <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Classes="actBtn" Height="46" Width="148" Margin="3"
                                         FontWeight="Bold" Background="#DAE8FC" Click="button3_Click"
                                         ToolTip.Tip="Запуск выполнения G-кода сканирования">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image Source="avares://G-write/Assets/icon_send.png" Width="22" Height="22"/>
+                                        <Image Source="avares://G-write/Assets/icon_send.png" Width="30" Height="30"/>
                                         <TextBlock Text="Отправить" VerticalAlignment="Center" FontWeight="Bold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка Пауза / Возобновить (button11) -->
-                                <Button Grid.Row="3" Grid.Column="0" x:Name="button11" Classes="actBtn" Height="46" Width="140" Margin="3"
+                                <Button Grid.Row="3" Grid.Column="0" x:Name="button11" Classes="actBtn" Height="46" Width="148" Margin="3"
                                         Background="#FFF2CC" Click="button11_Click"
                                         ToolTip.Tip="Приостановить или возобновить выполнение">
                                     <StackPanel Orientation="Horizontal" Spacing="6" HorizontalAlignment="Center">
-                                        <Image x:Name="imgButton11" Source="avares://G-write/Assets/icon_pause.png" Width="22" Height="22"/>
+                                        <Image x:Name="imgButton11" Source="avares://G-write/Assets/icon_pause.png" Width="30" Height="30"/>
                                         <TextBlock x:Name="txtButton11" Text="Пауза" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                     </StackPanel>
                                 </Button>
 
                                 <!-- Кнопка Аварийного останова и сброса (button10) -->
                                 <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="button10" Classes="actBtn"
-                                        Height="44" Width="369" Margin="2,4,2,2" Background="#D9534F" Foreground="White" Click="button10_Click_1"
+                                        Height="46" Width="369" Margin="2,4,2,2" Background="#D9534F" Foreground="White" Click="button10_Click_1"
                                         ToolTip.Tip="Экстренный останов / разблокировка контроллера">
                                     <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
-                                        <Image x:Name="imgButton10" Source="avares://G-write/Assets/icon_stop.png" Width="24" Height="24" VerticalAlignment="Center"/>
+                                        <Image x:Name="imgButton10" Source="avares://G-write/Assets/icon_stop.png" Width="34" Height="34" VerticalAlignment="Center"/>
                                         <TextBlock x:Name="txtButton10" Text="СТОП" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
@@ -373,27 +373,27 @@
                                             <!-- ВВЕРХ (Y+) -->
                                             <Button Grid.Row="0" Grid.Column="1" x:Name="buttonUpXY" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonUpXY_Click" ToolTip.Tip="Перемещение Y+">
-                                                <Image Source="avares://G-write/Assets/btn_buttonUpXY.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonUpXY.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- ВЛЕВО (X-) -->
                                             <Button Grid.Row="1" Grid.Column="0" x:Name="buttonLeftXY" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonLeftXY_Click" ToolTip.Tip="Перемещение X-">
-                                                <Image Source="avares://G-write/Assets/btn_buttonLeftXY.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonLeftXY.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- HOME XY (возврат к датчикам XY) -->
                                             <Button Grid.Row="1" Grid.Column="1" x:Name="buttonHomeXY" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonHomeXY_Click" ToolTip.Tip="Home XY (G28 X0 Y0)">
-                                                <Image Source="avares://G-write/Assets/btn_buttonHomeXY.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonHomeXY.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- ВПРАВО (X+) -->
                                             <Button Grid.Row="1" Grid.Column="2" x:Name="buttonRightXY" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonRightXY_Click" ToolTip.Tip="Перемещение X+">
-                                                <Image Source="avares://G-write/Assets/btn_buttonRightXY.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonRightXY.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- ВНИЗ (Y-) -->
                                             <Button Grid.Row="2" Grid.Column="1" x:Name="buttonDownXY" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonDownXY_Click" ToolTip.Tip="Перемещение Y-">
-                                                <Image Source="avares://G-write/Assets/btn_buttonDownXY.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonDownXY.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                         </Grid>
                                     </StackPanel>
@@ -407,17 +407,17 @@
                                             <!-- ВВЕРХ Z+ -->
                                             <Button Grid.Row="0" Grid.Column="0" x:Name="buttonUpZ" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonUpZ_Click" ToolTip.Tip="Подъем Z+">
-                                                <Image Source="avares://G-write/Assets/btn_buttonUpZ.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonUpZ.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- ВНИЗ Z- -->
                                             <Button Grid.Row="1" Grid.Column="0" x:Name="buttonDownZ" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonDownZ_Click" ToolTip.Tip="Опускание Z-">
-                                                <Image Source="avares://G-write/Assets/btn_buttonDownZ.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonDownZ.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                             <!-- HOME Z -->
                                             <Button Grid.Row="1" Grid.Column="1" x:Name="buttonHomeZ" Classes="jogBtn"
                                                     Width="76" Height="62" Click="buttonHomeZ_Click" ToolTip.Tip="Home Z (G28 Z0)">
-                                                <Image Source="avares://G-write/Assets/btn_buttonHomeZ.png" Width="44" Height="44" Stretch="Uniform"/>
+                                                <Image Source="avares://G-write/Assets/btn_buttonHomeZ.png" Width="50" Height="50" Stretch="Uniform"/>
                                             </Button>
                                         </Grid>
                                     </StackPanel>
